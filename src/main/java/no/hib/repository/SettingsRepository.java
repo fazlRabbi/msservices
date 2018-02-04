@@ -19,12 +19,15 @@ public class SettingsRepository {
     private Database database;
 
     private void init() {
-        client = ClientBuilder.account("58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix:91de7276fb3f1509f7731d93b5b1caf8c7ec401b578cda83b224dcc47278c09a@58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix")
-                .username("58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix")
-                .password("91de7276fb3f1509f7731d93b5b1caf8c7ec401b578cda83b224dcc47278c09a")
-                .build();
+//        client = ClientBuilder.account("58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix:91de7276fb3f1509f7731d93b5b1caf8c7ec401b578cda83b224dcc47278c09a@58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix")
+//                .username("58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix")
+//                .password("91de7276fb3f1509f7731d93b5b1caf8c7ec401b578cda83b224dcc47278c09a")
+//                .build();
+//
+//        database = client.database("msservice",true);
 
-        database = client.database("msservice",true);
+        database = CloudantClientMgr.getDB();
+
     }
 
     public Settings getSettings() {

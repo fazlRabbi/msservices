@@ -1,8 +1,8 @@
 applications:
-- path: target/JavaHelloWorldApp.war
+- path: target/JavaHelloWorldApp-1.0-SNAPSHOT.war
   memory: 512M
   instances: 1
-  domain: medicloud.eu-gb.mybluemix.net
-  name: ms-services
-  host: ms-services
+  domain: eu-gb.mybluemix.net
+  name: msservices
+  host: msservices
   disk_quota: 1024M
