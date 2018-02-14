@@ -6,6 +6,7 @@ import com.cloudant.client.api.Database;
 import no.hib.models.Appointment;
 import no.hib.models.AppointmentPreperation;
 import no.hib.utils.SearchStringGenerator;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class AppointmentPreperationRepository {
 //        database = client.database("msservice",true);
 
         database = CloudantClientMgr.getDB();
+        if(database==null)
+            System.out.println("Database was null");
     }
 
     public List<AppointmentPreperation> getAppointmentPreperations(String patientSsn) {

@@ -9,6 +9,8 @@ import no.hib.models.Symptom;
 import no.hib.utils.SearchStringGenerator;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +21,12 @@ public class SettingsRepository {
     private Database database;
 
     private void init() {
-//        client = ClientBuilder.account("58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix:91de7276fb3f1509f7731d93b5b1caf8c7ec401b578cda83b224dcc47278c09a@58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix")
-//                .username("58761b32-3b76-417d-a889-6c2bd1a2a425-bluemix")
-//                .password("91de7276fb3f1509f7731d93b5b1caf8c7ec401b578cda83b224dcc47278c09a")
+//        client = ClientBuilder.account("b6768e5f-ff3f-4b05-8894-f2445cc2d875-bluemix")
+//                .username("b6768e5f-ff3f-4b05-8894-f2445cc2d875-bluemix")
+//                .password("9a63dfff816095013e2278d65df3d1aa0171ad5a6f03e5c5de111ed5ece9dc4b")
 //                .build();
 //
-//        database = client.database("msservice",true);
+//        database = client.database("sample_nosql_db",true);
 
         database = CloudantClientMgr.getDB();
 
@@ -33,8 +35,21 @@ public class SettingsRepository {
     public Settings getSettings() {
         init();
         String searchString = SearchStringGenerator.getSearchString("appointmentPreperationMinStart","exists","true");
+
         List<Settings> settings = database.findByIndex(searchString, Settings.class);
-        return settings.get(0);
+        if (settings.size() == 0) {
+            Settings settings1 = createSettings();
+            return settings1;
+        } else {
+            return settings.get(0);
+
+        }
+    }
+
+    public Settings createSettings(){
+        Settings s = new Settings(3, new ArrayList<Symptom>(), new ArrayList<OtherSubject>());
+        database.save(s);
+        return s;
     }
 
     public Settings updateSettings(Settings settings) {

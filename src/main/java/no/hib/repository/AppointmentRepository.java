@@ -1,6 +1,5 @@
 package no.hib.repository;
 
-import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
 import no.hib.models.Appointment;
@@ -24,6 +23,8 @@ public class AppointmentRepository {
 //        database = client.database("msservice",true);
 
         database = CloudantClientMgr.getDB();
+        if (database == null)
+            System.out.println("Database was null");
 
     }
 
