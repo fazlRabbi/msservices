@@ -1,5 +1,5 @@
 applications:
-- path: target/JavaHelloWorldApp-1.0-SNAPSHOT.war
+- path: target/msservice-1.0-SNAPSHOT.war
   memory: 1024M
   instances: 1
   domain: eu-gb.mybluemix.net
